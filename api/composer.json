@@ -1,8 +1,0 @@
-{
-    "require": {
-        "symfony/orm-pack": "*"
-    },
-    "require-dev": {
-        "symfony/maker-bundle": "*"
-    }
-}
