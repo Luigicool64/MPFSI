@@ -22,10 +22,12 @@ export class Header {
         this.div2.classList.add('header-info');
         this.contentDiv.appendChild(this.div2);
         
-        this.titre = document.createElement('h1');
-        this.titre.textContent = titre;
-        this.div2.appendChild(this.titre);
-
+        if(titre){
+            this.titre = document.createElement('h1');
+            this.titre.textContent = titre;
+            this.div2.appendChild(this.titre);
+        }
+        
         if(description){
             this.description = document.createElement('p');
             this.description.textContent = description;

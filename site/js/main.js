@@ -1,50 +1,75 @@
 import Home from './page/home.js';
+import About from './page/about.js';
+import Training from './page/training.js';
+import Contact from './page/contact.js';
+import Shop from './page/shop.js';
 
 document.addEventListener('DOMContentLoaded', function() {
+    const name = 'content'; 
+
+    const contentDiv = document.getElementById(name);
 
     const loadHome = () => {
-        if (document.getElementById('content').children.length > 0) {
-            document.getElementById('content').innerHTML = '';
-
+        if (contentDiv.children.length > 0) {
+            contentDiv.innerHTML = '';
         }
         const home = new Home();
-        home.getContent('content');
+        home.getContent(name);
     };
     
     const loadAbout = () => {
-        contentDiv.innerHTML = `
-            <h1>À Propos</h1>
-            <p>Voici des informations sur notre entreprise.</p>
-        `;
+        if (contentDiv.children.length > 0) {
+            contentDiv.innerHTML = '';
+        }
+        const about = new About();
+        about.getContent(name);
     };
     
     const loadTraining = () => {
-        contentDiv.innerHTML = `
-            <h1>Nos Formations</h1>
-            <p>Découvrez nos programmes de formation.</p>
-        `;
+        if (contentDiv.children.length > 0) {
+            contentDiv.innerHTML = '';
+        }
+        const training = new Training();
+        training.getContent(name);
     };
     
     const loadContact = () => {
-        contentDiv.innerHTML = `
-            <h1>Contactez-nous</h1>
-            <p>Voici comment nous contacter.</p>
-        `;
+        if (contentDiv.children.length > 0) {
+            contentDiv.innerHTML = '';
+        }
+        const contact = new Contact();
+        contact.getContent(name);
+    };
+
+    const loadShop = () => {
+        if (contentDiv.children.length > 0) {
+            contentDiv.innerHTML = '';
+        }
+        const shop = new Shop();
+        shop.getContent(name);
     };
     
     const loadContent = (section) => {
         switch (section) {
             case 'home':
                 loadHome();
+                history.pushState({ section: 'home' }, '', '#home');
                 break;
             case 'about':
                 loadAbout();
+                history.pushState({ section: 'about' }, '', '#about');
                 break;
             case 'training':
                 loadTraining();
+                history.pushState({ section: 'training' }, '', '#training');
                 break;
             case 'contact':
                 loadContact();
+                history.pushState({ section: 'contact' }, '', '#contact');
+                break;
+            case 'shop':
+                loadShop();
+                history.pushState({ section: 'shop' }, '', '#shop');
                 break;
             default:
                 contentDiv.innerHTML = `
@@ -54,24 +79,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Écouteurs d'événements pour les liens de navigation
-    document.querySelectorAll('.nav a').forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault(); // Empêche le comportement par défaut du lien
-            const section = event.target.getAttribute('href').substring(1); // Récupère la section depuis href
-            loadContent(section); // Charge le contenu correspondant
-            window.history.pushState({}, '', section); // Met à jour l'URL
-        });
+    // Ajout des gestionnaires d'événements pour les liens
+    document.getElementById('homeLink').addEventListener('click', (event) => {
+        event.preventDefault();
+        loadContent('home');
+    });
+    document.getElementById('aboutLink').addEventListener('click', (event) => {
+        event.preventDefault();
+        loadContent('about');
+    });
+    document.getElementById('trainingLink').addEventListener('click', (event) => {
+        event.preventDefault();
+        loadContent('training');
+    });
+    document.getElementById('contactLink').addEventListener('click', (event) => {
+        event.preventDefault();
+        loadContent('contact');
+    });
+    document.getElementById('shopLink').addEventListener('click', (event) => {
+        event.preventDefault();
+        loadContent('shop');
     });
 
-    // Gestion de l'historique lors du chargement de la page
-    window.addEventListener('popstate', () => {
+    // Gérer le chargement de la page en fonction de l'URL
+    const initialSection = window.location.hash.replace('#', '') || 'home';
+    loadContent(initialSection);
 
-        loadContent(window.location.hash.substring(1) || 'home'); // Charge le contenu basé sur l'URL
-    
+    // Gérer le retour en arrière et l'avance dans l'historique
+    window.addEventListener('popstate', (event) => {
+        if (event.state) {
+            loadContent(event.state.section);
+        }
     });
-    
-    
-    // Chargement initial du contenu
-    loadContent(window.location.hash.substring(1) || 'home'); // Charge le contenu de la page d'accueil par défaut
 });
