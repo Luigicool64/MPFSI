@@ -1,48 +1,35 @@
 export class Header {
-    constructor(contentDiv, titre, description, nbbutton, buttons) {
-        this.contentDiv = document.getElementById(contentDiv);
-        
-        console.log(this.contentDiv)
-
-        if (this.contentDiv instanceof HTMLElement) {
-            console.log('La div existe');
-        } else {
-            console.log('La div n\'existe pas');
+    getContent(div,name) {
+        this.div = document.getElementById(div);
+        if (!this.div) {
+            console.error(`Element with ID ${div} not found.`);
+            return;
         }
 
-        this.div1 = document.createElement('div');
-        this.div1.classList.add('header-image');
-        this.contentDiv.appendChild(this.div1);
+        // Create a new div element
+        this.header = document.createElement('div');
+        this.header.classList.add('header');
 
-        this.img = document.createElement('img');
-        this.img.src = 'src/image/ex/unnamed.jpg';
-        this.div1.appendChild(this.img);
+        // Append the header to the specified div
+        this.div.appendChild(this.header);
 
-        this.div2 = document.createElement('div');
-        this.div2.classList.add('header-info');
-        this.contentDiv.appendChild(this.div2);
-        
-        if(titre){
-            this.titre = document.createElement('h1');
-            this.titre.textContent = titre;
-            this.div2.appendChild(this.titre);
+        this.header_img = document.createElement('div')
+        this.header_img.classList.add('header_img');
+        this.header.appendChild(this.header_img);
+
+        this.img = document.createElement('img')
+        this.img.src = 'src/image/ex/unnamed.jpg'
+
+        this.header_img.appendChild(this.img)
+
+        this.header_info = document.createElement('div');
+        this.header_info.classList.add('header-info');
+        this.header.appendChild(this.header_info);
+
+        if(name){
+            this.h1 = document.createElement('h1');
+            this.h1.textContent = name
+            this.header_info.appendChild(this.h1);
         }
-        
-        if(description){
-            this.description = document.createElement('p');
-            this.description.textContent = description;
-            this.div2.appendChild(this.description);
-        }
-
-        this.div3 = document.createElement('div');
-        this.div3.classList.add('header-buttons');            
-        this.div2.appendChild(this.div3);
-        
-        if(nbbutton){    
-            for (let i = 0; i < nbbutton; i++) {
-                const button = new Button('header-buttons', i, buttons);
-            }
-        }
-
-    }   
+    }
 }
