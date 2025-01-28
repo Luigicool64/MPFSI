@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const openBtn = document.getElementById("openBtn");
     const closeBtn = document.getElementById("closeBtn");
 
-    // Initialiser le sidenav
     closeBtn.style.display = "none"; // Masquer le bouton de fermeture au départ
 
     openBtn.onclick = function() {
@@ -58,6 +57,13 @@ document.addEventListener('DOMContentLoaded', function () {
         shop.getContent(name);
     };
 
+    const loadNoFind = () =>{
+        contentDiv.innerHTML = `
+            <h1>Page non trouvée</h1>
+            <p>Désolé, la page que vous recherchez n'existe pas.</p>
+        `;
+    }
+
     const loadContent = (section) => {
         switch (section) {
             case 'home':
@@ -81,10 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 history.pushState({ section: 'shop' }, '', '#shop');
                 break;
             default:
-                contentDiv.innerHTML = `
-                    <h1>Page non trouvée</h1>
-                    <p>Désolé, la page que vous recherchez n'existe pas.</p>
-                `;
+                loadNoFind();
+                
         }
     };
 
