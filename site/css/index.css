@@ -17,9 +17,13 @@ button {
     align-items: center;
 }
 
+.navbar-burger {
+    display: none;
+}
+
 .logo {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     background-color: #C66200;
     border-radius: 0 0 5px 5px;
     padding: 20px;
@@ -34,7 +38,7 @@ button {
     object-fit: contain;
     padding-top: 5px;
 }
-  
+
 .nav {
     display: flex;
     gap: 20px;
@@ -57,7 +61,7 @@ button {
     font-size: 20px;
     margin-bottom: -20px;
 }
-  
+
 .telephone {
     background-color: #8C0000;
     width: 50%;
@@ -67,9 +71,9 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
 }
-    
+
 .email {
     background-color: #FFA500;
     width: 50%;
@@ -78,15 +82,15 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;  
-}  
-  
+    align-items: center;
+}
+
 .telephone img {
     width: 30px;
     height: 30px;
-    margin-bottom: 10px;  
+    margin-bottom: 10px;
 }
-  
+
 .email img {
     width: 50px;
     height: 50px;
@@ -129,7 +133,7 @@ button {
     text-align: center;
 }
 
-.form input{
+.form input {
     margin: 10px;
     border-radius: 25px;
     border: none;
@@ -159,13 +163,13 @@ button {
     color: #ffffff;
 }
 
-.little{
+.little {
     width: 530px;
     height: 30px;
-    
+
 }
 
-.high{
+.high {
     width: 1100px;
     height: 30px;
 }
@@ -182,32 +186,36 @@ button {
 }
 
 
-.input-group textarea:focus + label {
+.input-group textarea:focus+label {
     width: 1100px;
     height: 30px;
     padding: 5px;
     margin: 10px;
     border: none;
     border-radius: 25px;
-    background-color: #ff9933;
+    background-color: #C60000;
     color: #ffffff;
 }
 
-.input-group input:focus + label,  .input-group input:not(:placeholder-shown) + label {
-    top:-10px;
+.input-group input:focus+label,
+.input-group input:not(:placeholder-shown)+label {
+    top: -10px;
     left: 15px;
     border-radius: 25px;
     background-color: #C60000;
+    color: #ffffff;
 }
 
 .input-group input::placeholder {
     color: transparent;
 }
 
-.input-group textarea:focus + label {
+.input-group textarea:focus+label,
+.input-group textarea:not(:placeholder-shown)+label {
     top: -10px;
+    left: 15px;
     border-radius: 25px;
-    color: #000000;
+    color: #ffffff;
 }
 
 .input-group textarea::placeholder {
@@ -242,4 +250,173 @@ button {
     color: #FFFFFF;
     font-weight: bold;
     cursor: pointer;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .navbar-burger {
+        background-color: #FF0000;
+        height: 50px;
+        width: 100%;
+        position: absolute;
+        margin-top: -195px;
+    }
+
+
+    .nav {
+        display: none;
+    }
+
+    .content {
+        padding: auto;
+    }
+
+    .logo {
+        width: 215px;
+        height: 205px;
+        background-color: #C66200;
+        border-radius: 0 0 5px 5px;
+        padding: 20px;
+        margin-right: 300px;
+
+        z-index: 1;
+    }
+
+    .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding-top: 5px;
+    }
+
+    .navbar-burger {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+
+    .sidenav {
+        height: 0px;
+        width: 100%;
+        position: fixed;
+        z-index: -1;
+        top: 48px;
+        left: 0;
+        background-color: #FF3333;
+        overflow-y: hidden;
+        transition: 0.5s;
+    }
+
+    #sidenavLink {
+        padding-top: 60px;
+    }
+
+    .sidenav a {
+        padding: 3px;
+        text-decoration: none;
+        font-size: 25px;
+        margin-left: 500px;
+        color: black;
+        display: block;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    #closeBtn {
+        position: absolute;
+        margin-left: 700px;
+        cursor: pointer;
+    }
+
+    #closeBtn p {
+        font-size: xx-large;
+    }
+
+    #openBtn {
+        position: absolute;
+        margin-left: 700px;
+        cursor: pointer;
+    }
+
+    #openBtn span {
+        display: block;
+        width: 35px;
+        height: 5px;
+        background-color: black;
+        margin: 6px 0;
+    }
+
+    #content {
+        transition: margin-bottom ease .5s;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 60px;
+        border-radius: 20px;
+        font-size: 20px;
+        margin-bottom: -20px;
+    }
+
+    .telephone {
+        background-color: #8C0000;
+        width: 50%;
+        border-radius: 20px 0 0 0;
+        padding: 0 20px 0 0;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .email {
+        background-color: #FFA500;
+        width: 50%;
+        border-radius: 0 20px 0 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .telephone img {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 10px;
+    }
+
+    .email img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+
+    .telephone img {
+        width: 90px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+
+    .high {
+        width: 660px;
+    }
+
+    .little {
+        width: 660px;
+    }
+
+    .form-info {
+        flex-direction: column;
+    }
+
+    .input-group textarea {
+        width: 660px;
+    }
 }

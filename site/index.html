@@ -3,24 +3,43 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="aspest-ratio=device-ratio, initial-scale=1.0">
   <link rel="stylesheet" href="css/index.css">
   <title>MPFSI</title>
 </head>
 
 <body>
+
   <div class="navbar">
     <div class="logo">
-      <img src="src/image/Copie de mpfsi10.png" alt="Logo">
+        <img src="src/image/Copie de mpfsi10.png" alt="Logo">
     </div>
     <div class="nav">
-      <a href="#home" id="homeLink">Accueil</a>
-      <a href="#about" id="aboutLink">A propos</a>
-      <a href="#training" id="trainingLink">Formation</a>
-      <a href="#contact" id="contactLink">Contact</a>
-      <a href="#shop" id="shopLink">Boutique</a>
+        <a href="#home" id="homeLink">Accueil</a>
+        <a href="#about" id="aboutLink">À propos</a>
+        <a href="#training" id="trainingLink">Formation</a>
+        <a href="#contact" id="contactLink">Contact</a>
+        <a href="#shop" id="shopLink">Boutique</a>
     </div>
-  </div>
+    <div class="navbar-burger">
+        <div id="mySidenav" class="sidenav">
+            <a href="#home" class="sidenavLink">Accueil</a>
+            <a href="#about" class="sidenavLink">À propos</a>
+            <a href="#training" class="sidenavLink">Formation</a>
+            <a href="#contact" class="sidenavLink">Contact</a>
+            <a href="#shop" class="sidenavLink">Boutique</a>
+        </div>
+        <span id="openBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <span id="closeBtn" style="display: none;">
+          <p>X</p>
+        </span>
+    </div>
+    
+</div>
   <div id="content">
   </div>
   <script type="module" src="js/main.js"></script>

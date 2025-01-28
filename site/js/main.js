@@ -4,51 +4,60 @@ import Training from './page/training.js';
 import Contact from './page/contact.js';
 import Shop from './page/shop.js';
 
-document.addEventListener('DOMContentLoaded', function() {
-    const name = 'content'; 
-
+document.addEventListener('DOMContentLoaded', function () {
+    const name = 'content';
     const contentDiv = document.getElementById(name);
+    const sidenav = document.getElementById("mySidenav");
+    const openBtn = document.getElementById("openBtn");
+    const closeBtn = document.getElementById("closeBtn");
+
+    // Initialiser le sidenav
+    closeBtn.style.display = "none"; // Masquer le bouton de fermeture au départ
+
+    openBtn.onclick = function() {
+        sidenav.style.height = "180px"; // Ouvrir le sidenav
+        contentDiv.style.marginTop = "250px"; // Ajuster le contenu
+        openBtn.style.display = "none"; // Masquer le bouton d'ouverture
+        closeBtn.style.display = ""; // Afficher le bouton de fermeture
+    }
+
+    closeBtn.onclick = function() {
+        sidenav.style.height = "0"; // Fermer le sidenav
+        contentDiv.style.marginTop = ""; // Réinitialiser le contenu
+        openBtn.style.display = ""; // Afficher le bouton d'ouverture
+        closeBtn.style.display = "none"; // Masquer le bouton de fermeture
+    }
 
     const loadHome = () => {
-        if (contentDiv.children.length > 0) {
-            contentDiv.innerHTML = '';
-        }
+        contentDiv.innerHTML = '';
         const home = new Home();
         home.getContent(name);
     };
-    
+
     const loadAbout = () => {
-        if (contentDiv.children.length > 0) {
-            contentDiv.innerHTML = '';
-        }
+        contentDiv.innerHTML = '';
         const about = new About();
         about.getContent(name);
     };
-    
+
     const loadTraining = () => {
-        if (contentDiv.children.length > 0) {
-            contentDiv.innerHTML = '';
-        }
+        contentDiv.innerHTML = '';
         const training = new Training();
         training.getContent(name);
     };
-    
+
     const loadContact = () => {
-        if (contentDiv.children.length > 0) {
-            contentDiv.innerHTML = '';
-        }
+        contentDiv.innerHTML = '';
         const contact = new Contact();
         contact.getContent(name);
     };
 
     const loadShop = () => {
-        if (contentDiv.children.length > 0) {
-            contentDiv.innerHTML = '';
-        }
+        contentDiv.innerHTML = '';
         const shop = new Shop();
         shop.getContent(name);
     };
-    
+
     const loadContent = (section) => {
         switch (section) {
             case 'home':
@@ -79,26 +88,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Ajout des gestionnaires d'événements pour les liens
-    document.getElementById('homeLink').addEventListener('click', (event) => {
-        event.preventDefault();
-        loadContent('home');
-    });
-    document.getElementById('aboutLink').addEventListener('click', (event) => {
-        event.preventDefault();
-        loadContent('about');
-    });
-    document.getElementById('trainingLink').addEventListener('click', (event) => {
-        event.preventDefault();
-        loadContent('training');
-    });
-    document.getElementById('contactLink').addEventListener('click', (event) => {
-        event.preventDefault();
-        loadContent('contact');
-    });
-    document.getElementById('shopLink').addEventListener('click', (event) => {
-        event.preventDefault();
-        loadContent('shop');
+    // Ajout des gestionnaires d'événements pour les liens de la navbar et du sidenav
+    const navLinks = document.querySelectorAll('.nav a, .sidenav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const section = link.getAttribute('href').replace('#', '');
+            loadContent(section);
+            sidenav.style.height = "0"; // Fermer le sidenav après le clic
+            contentDiv.style.marginTop = ""; // Réinitialiser le contenu
+            openBtn.style.display = ""; // Afficher le bouton d'ouverture
+            closeBtn.style.display = "none"; // Masquer le bouton de fermeture
+        });
     });
 
     // Gérer le chargement de la page en fonction de l'URL

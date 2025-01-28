@@ -76,13 +76,13 @@ export default class Message {
 
         this.input1 = document.createElement('textarea');
         this.input1.name = 'message';
+        this.input1.placeholder = 'Ecrire un Message';
         this.input1.id = 'message';
         this.input1.required = true;
         this.div1.appendChild(this.input1);
 
         this.span = document.createElement('label');
         this.span.textContent = 'Ecrire un Message';
-        this.span.classList.add('label');
         this.div1.appendChild(this.span);
 
         this.button = document.createElement('button');
