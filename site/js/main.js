@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     openBtn.onclick = function() {
         sidenav.style.height = "180px"; // Ouvrir le sidenav
-        contentDiv.style.marginTop = "250px"; // Ajuster le contenu
+        contentDiv.style.marginTop = "180px"; // Ajuster le contenu
         openBtn.style.display = "none"; // Masquer le bouton d'ouverture
         closeBtn.style.display = ""; // Afficher le bouton de fermeture
     }
