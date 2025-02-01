@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'DMSerifText';
+    src: url('../src/font/DMSerifText-Regular.ttf');
+}
+
+*{
+    font-family: 'DMSerifText', sans-serif;
+}
+
 button {
     width: 310px;
     height: 85px;
@@ -346,7 +355,8 @@ button {
 }
 
 .query-a a {
-    color: #FF9933
+    color: #FF9933;
+    text-decoration-line: none;
 }
 
 #result-container{
