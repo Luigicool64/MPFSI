@@ -4,15 +4,21 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2/promise');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*"); // Permettre toutes les origines
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 // Configuration de la connexion à la base de données
 const dbConfig = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD, // Ajoutez cette ligne pour le mot de passe
     database: process.env.DB_NAME
 };
 
