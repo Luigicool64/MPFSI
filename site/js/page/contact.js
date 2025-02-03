@@ -3,9 +3,10 @@ import { Header } from '../composant/header.js';
 
 export default class Contact {
         getContent(div) {
-            this.title = document.title = 'MPFSI - Contact';
+            this.name = 'Contact'
+            this.title = document.title = `MPFSI - ${this.name}`;
             const header = new Header();
-            header.getContent(div,'Contact')
+            header.getContent(div,this.name)
             const message = new Message;
             message.getContent(div);    
         }

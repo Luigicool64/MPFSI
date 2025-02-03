@@ -11,106 +11,62 @@ document.addEventListener('DOMContentLoaded', function () {
     const openBtn = document.getElementById("openBtn");
     const closeBtn = document.getElementById("closeBtn");
 
-    closeBtn.style.display = "none"; // Masquer le bouton de fermeture au départ
+    closeBtn.style.display = "none"; // Hide close button initially
 
-    openBtn.onclick = function() {
-        sidenav.style.height = "180px"; // Ouvrir le sidenav
-        contentDiv.style.marginTop = "180px"; // Ajuster le contenu
-        openBtn.style.display = "none"; // Masquer le bouton d'ouverture
-        closeBtn.style.display = ""; // Afficher le bouton de fermeture
-    }
-
-    closeBtn.onclick = function() {
-        sidenav.style.height = "0"; // Fermer le sidenav
-        contentDiv.style.marginTop = ""; // Réinitialiser le contenu
-        openBtn.style.display = ""; // Afficher le bouton d'ouverture
-        closeBtn.style.display = "none"; // Masquer le bouton de fermeture
-    }
-
-    const loadHome = () => {
-        contentDiv.innerHTML = '';
-        const home = new Home();
-        home.getContent(name);
+    const toggleSidenav = (isOpen) => {
+        sidenav.style.height = isOpen ? "180px" : "0";
+        contentDiv.style.marginTop = isOpen ? "180px" : "";
+        openBtn.style.display = isOpen ? "none" : "";
+        closeBtn.style.display = isOpen ? "" : "none";
     };
 
-    const loadAbout = () => {
-        contentDiv.innerHTML = '';
-        const about = new About();
-        about.getContent(name);
+    openBtn.onclick = () => toggleSidenav(true);
+    closeBtn.onclick = () => toggleSidenav(false);
+
+    const loadContent = (section) => {
+        const sections = {
+            home: Home,
+            about: About,
+            training: Training,
+            contact: Contact,
+            shop: Shop
+        };
+
+        const SectionClass = sections[section] || null;
+
+        if (SectionClass) {
+            contentDiv.innerHTML = '';
+            const sectionInstance = new SectionClass();
+            sectionInstance.getContent(name);
+            history.pushState({ section }, '', `#${section}`);
+        } else {
+            loadNoFind();
+        }
     };
 
-    const loadTraining = () => {
-        contentDiv.innerHTML = '';
-        const training = new Training();
-        training.getContent(name);
-    };
-
-    const loadContact = () => {
-        contentDiv.innerHTML = '';
-        const contact = new Contact();
-        contact.getContent(name);
-    };
-
-    const loadShop = () => {
-        contentDiv.innerHTML = '';
-        const shop = new Shop();
-        shop.getContent(name);
-    };
-
-    const loadNoFind = () =>{
+    const loadNoFind = () => {
         contentDiv.innerHTML = `
             <h1>Page non trouvée</h1>
             <p>Désolé, la page que vous recherchez n'existe pas.</p>
         `;
-    }
-
-    const loadContent = (section) => {
-        switch (section) {
-            case 'home':
-                loadHome();
-                history.pushState({ section: 'home' }, '', '#home');
-                break;
-            case 'about':
-                loadAbout();
-                history.pushState({ section: 'about' }, '', '#about');
-                break;
-            case 'training':
-                loadTraining();
-                history.pushState({ section: 'training' }, '', '#training');
-                break;
-            case 'contact':
-                loadContact();
-                history.pushState({ section: 'contact' }, '', '#contact');
-                break;
-            case 'shop':
-                loadShop();
-                history.pushState({ section: 'shop' }, '', '#shop');
-                break;
-            default:
-                loadNoFind();
-                
-        }
     };
 
-    // Ajout des gestionnaires d'événements pour les liens de la navbar et du sidenav
-    const navLinks = document.querySelectorAll('.nav a, .sidenav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', (event) => {
+    // Event delegation for navigation links
+    document.addEventListener('click', (event) => {
+        const link = event.target.closest('.nav a, .sidenav a, .button-div a');
+        if (link) {
             event.preventDefault();
             const section = link.getAttribute('href').replace('#', '');
             loadContent(section);
-            sidenav.style.height = "0"; // Fermer le sidenav après le clic
-            contentDiv.style.marginTop = ""; // Réinitialiser le contenu
-            openBtn.style.display = ""; // Afficher le bouton d'ouverture
-            closeBtn.style.display = "none"; // Masquer le bouton de fermeture
-        });
+            toggleSidenav(false); // Close sidenav after click
+        }
     });
 
-    // Gérer le chargement de la page en fonction de l'URL
+    // Load initial content based on URL
     const initialSection = window.location.hash.replace('#', '') || 'home';
     loadContent(initialSection);
 
-    // Gérer le retour en arrière et l'avance dans l'historique
+    // Handle back and forward navigation
     window.addEventListener('popstate', (event) => {
         if (event.state) {
             loadContent(event.state.section);

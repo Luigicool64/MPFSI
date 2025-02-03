@@ -1,5 +1,7 @@
+import Button from "./button.js";
+
 export class Header {
-    getContent(div,name) {
+    getContent(div,name,img) {
         this.div = document.getElementById(div);
         if (!this.div) {
             console.error(`Element with ID ${div} not found.`);
@@ -17,9 +19,13 @@ export class Header {
         this.header_img.classList.add('header_img');
         this.header.appendChild(this.header_img);
 
-        this.img = document.createElement('img')
-        this.img.src = 'src/image/ex/unnamed.jpg'
-
+        if(img){
+            this.img = document.createElement('img');
+            this.img.src = img;
+        }else{
+            this.img = document.createElement('img')
+            this.img.src = 'src/image/ex/unnamed.jpg';
+        }
         this.header_img.appendChild(this.img)
 
         this.header_info = document.createElement('div');
@@ -31,5 +37,7 @@ export class Header {
             this.h1.textContent = name
             this.header_info.appendChild(this.h1);
         }
+
+        const bouton = new Button(this.header_info,name);
     }
 }

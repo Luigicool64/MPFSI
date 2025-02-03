@@ -3,10 +3,11 @@ import { module } from "../composant/qui_sommes_nous.js";
 
 export default class About {
     getContent(name) {
-        this.title = document.title = 'MPFSI - A propos';   
+        this.name = 'A propos';
+        this.title = document.title = `MPFSI - ${this.name}`;   
         const header = new Header();
-        header.getContent(name,'A propos');
-        const composant = new module(name,'quiSommesNous','QUI SOMMES-NOUS','Le MPFSI (Michael Portesse Formation Secourisme Incendie) est un organisation qui propose des formations intra-entreprise et des évenements sur de secourisme et Securité Incendie');
-        const composant2 = new module(name,'objectif','NOTRE OBJECTIF','Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas  porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies,  purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada  fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem. In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis,  nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.')
+        header.getContent(name, this.name);
+        const composant = new module(name,'quiSommesNous','QUI SOMMES-NOUS',`Le MPFSI (Michael Portesse Formation Secourisme Incendie) est une organisation spécialisée dans la formation en secourisme et sécurité incendie. Elle propose des formations intra-entreprise adaptées aux besoins des organisations, couvrant des thèmes tels que l'utilisation des extincteurs, l'évacuation des lieux et les premiers secours. Par ailleurs, le MPFSI organise des événements de sensibilisation destinés aux particuliers, visant à promouvoir la culture de la sécurité. Engagée à fournir des formations de qualité, l'organisation contribue à la protection des employés et des biens.`);
+        const composant2 = new module(name,'objectif','NOTRE OBJECTIF',`Notre objectif est de sensibiliser les individus aux dangers liés aux incendies en leur fournissant des connaissances sur les causes et les conséquences des incendies. Nous les formons à l'utilisation des extincteurs, à l'évacuation des lieux de manière ordonnée et à l'administration des premiers secours en cas de besoin. Nous élaborons également des procédures spécifiques, telles que l'organisation des évacuations et la gestion des alarmes. Cela contribue à instaurer une culture de la prévention et de la sécurité au sein de l'entreprise. Nous visons à garantir une réponse rapide et efficace en cas d'incident, afin de minimiser les conséquences physiques et matérielles, tout en respectant les obligations légales en matière de sécurité au travail, assurant ainsi la protection de tous les employés.`)
     }
 }
