@@ -7,7 +7,7 @@ export default class Training {
         this.title = document.title = `MPFSI - ${this.name}s`;
         const header = new Header();
         header.getContent(div,'Formation');
-        const Training_recherche = new TrainingRecherche('http://localhost:3001/formations');
+        const Training_recherche = new TrainingRecherche('http://localhost:3000/formations');
         Training_recherche.getContent(div);
         Training_recherche.loadFormations();
     }

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2/promise');
 
 const app = express();
-const port = 3001;
+const port = 3000;
 
 app.use(bodyParser.json());
 
@@ -57,11 +57,15 @@ app.post('/messages', async (req, res) => {
         return res.status(400).json({ error: 'Tous les champs sont requis' });
     }
 
-    const connection = await getConnection();
-    const [result] = await connection.execute('INSERT INTO messages (date, nom_entreprise, telephone, message, email) VALUES (?, ?, ?, ?, ?)', [date, nom_entreprise, telephone, message, email]);
-    await connection.end();
-
-    res.status(201).json({ id: result.insertId, message: 'Message ajouté avec succès' });
+    try {
+        const connection = await getConnection();
+        const [result] = await connection.execute('INSERT INTO messages (date, nom_entreprise, telephone, message, email) VALUES (?, ?, ?, ?, ?)', [date, nom_entreprise, telephone, message, email]);
+        await connection.end();
+        res.status(201).json({ id: result.insertId, message: 'Message ajouté avec succès' });
+    } catch (error) {
+        console.error('Erreur lors de l\'insertion dans la base de données :', error);
+        res.status(500).json({ error: 'Erreur interne du serveur' });
+    }
 });
 
 // Mettre à jour un message

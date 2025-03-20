@@ -3,6 +3,7 @@ import About from './page/about.js';
 import Training from './page/training.js';
 import Contact from './page/contact.js';
 import Shop from './page/shop.js';
+import TrainingDetail from './page/training-detail.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const name = 'content';
@@ -23,25 +24,26 @@ document.addEventListener('DOMContentLoaded', function () {
     openBtn.onclick = () => toggleSidenav(true);
     closeBtn.onclick = () => toggleSidenav(false);
 
-    const loadContent = (section) => {
+    const loadContent = (section, data = null) => {
         const sections = {
             home: Home,
             about: About,
             training: Training,
             contact: Contact,
-            shop: Shop
+            //shop: Shop,
+            trainingDetail: TrainingDetail // Ajout de la page de détails
         };
-
+    
         const SectionClass = sections[section] || null;
-
+    
         if (SectionClass) {
             contentDiv.innerHTML = '';
-            const sectionInstance = new SectionClass();
+            const sectionInstance = new SectionClass(data); // Passer les données si disponibles
             sectionInstance.getContent(name);
-            history.pushState({ section }, '', `#${section}`);
+            history.pushState({ section, data }, '', `#${section}`);
         } else {
             loadNoFind();
-        }
+        };
     };
 
     const loadNoFind = () => {
@@ -68,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Handle back and forward navigation
     window.addEventListener('popstate', (event) => {
-        if (event.state) {
-            loadContent(event.state.section);
-        }
-    });
+    if (event.state) {
+        loadContent(event.state.section, event.state.data); // Passer les données si disponibles
+    }
+});
 });

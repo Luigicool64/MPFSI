@@ -1,3 +1,4 @@
+import TrainingDetail from '../page/training-detail.js';
 
 export class TrainingRecherche {
     constructor(apiUrl) {
@@ -69,37 +70,57 @@ export class TrainingRecherche {
         this.displayResults(filtered);
     }
 
-    // Méthode pour afficher les résultats
-    displayResults(data) {
-        this.resultContainer.innerHTML = ''; // Vider le conteneur avant d'ajouter les nouveaux résultats
+   // Méthode pour afficher les résultats
+displayResults(data) {
+    this.resultContainer.innerHTML = ''; // Vider le conteneur avant d'ajouter les nouveaux résultats
 
-        if (data.length === 0) {
-            this.resultContainer.innerHTML = '<p>Aucune formation trouvée.</p>'; // Message si aucune formation
-            return;
-        }
-
-        data.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            this.resultContainer.appendChild(card); // Correction ici pour ajouter à resultContainer
-
-            const img = document.createElement('img');
-            img.src = 'src/image/ex/unnamed.jpg'; // Remplacez par le chemin de votre image
-            card.appendChild(img);
-
-            const cardContent = document.createElement('div');
-            cardContent.className = 'cardContent';
-            card.appendChild(cardContent);
-
-            const h1 = document.createElement('h1');
-            h1.textContent = item.titre;
-            cardContent.appendChild(h1);
-
-            const p = document.createElement('p');
-            p.textContent = item.type;
-            cardContent.appendChild(p);
-        });
+    if (data.length === 0) {
+        this.resultContainer.innerHTML = '<p>Aucune formation trouvée.</p>'; // Message si aucune formation
+        return;
     }
+
+    data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        // Création de l'élément <a> qui contiendra l'image et le contenu
+        const link = document.createElement('a');
+        link.href = '#'; // Remplacez par l'URL de la formation si nécessaire
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Charger la page de détails de la formation
+                const trainingDetail = new TrainingDetail(item);
+                trainingDetail.getContent('content'); // 'content' est l'ID du div principal
+                history.pushState({ section: 'trainingDetail', data: item }, '', `#trainingDetail`);
+            });
+
+        // Ajout de l'élément <a> à la carte
+        card.appendChild(link);
+
+        // Création de l'image
+        const img = document.createElement('img');
+        img.src = 'src/image/ex/unnamed.jpg'; // Remplacez par le chemin de votre image
+        link.appendChild(img); // Ajout de l'image à l'élément <a>
+
+        // Création du conteneur pour le contenu de la carte
+        const cardContent = document.createElement('div');
+        cardContent.className = 'cardContent';
+        link.appendChild(cardContent); // Ajout du contenu à l'élément <a>
+
+        // Ajout du titre
+        const h1 = document.createElement('h1');
+        h1.textContent = item.titre;
+        cardContent.appendChild(h1);
+
+        // Ajout de la description
+        const p = document.createElement('p');
+        p.textContent = item.type;
+        cardContent.appendChild(p);
+
+        // Ajout de la carte au conteneur des résultats
+        this.resultContainer.appendChild(card);
+    });
+}
 
     // Méthode pour charger les données des formations
     async loadFormations() {

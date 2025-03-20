@@ -10,31 +10,34 @@ export default class Button {
 
         // Define button configurations based on the name
         const buttonConfigs = {
-            '': [
+            ' ': [
                 { href: '#training', text: 'Nos formations' },
                 { href: '#about', text: 'Qui sommes-nous' },
                 { href: '#contact', text: 'Nous contacter' },
-                { href: '#shop', text: 'Notre Boutique' }
+                //{ href: '#shop', text: 'Notre Boutique' }
             ],
             'Formation': [
                 { href: '#about', text: 'Qui sommes-nous' },
                 { href: '#contact', text: 'Nous contacter' },
-                { href: '#shop', text: 'Notre Boutique' }
+                //{ href: '#shop', text: 'Notre Boutique' }
             ],
             'A propos': [
                 { href: '#training', text: 'Nos formations' },
                 { href: '#contact', text: 'Nous contacter' },
-                { href: '#shop', text: 'Notre Boutique' }
+                //{ href: '#shop', text: 'Notre Boutique' }
             ],
             'Contact': [
                 { href: '#training', text: 'Nos formations'},
                 { href: '#about', text: 'Qui sommes-nous' },
-                { href: '#shop', text: 'Notre Boutique' }
+                //{ href: '#shop', text: 'Notre Boutique' }
             ],
-            'Boutique': [
-                { href: '#training', text: 'Nos formations' },
-                { href: '#about', text: 'Qui sommes-nous' },
-                { href: '#contact', text: 'Nous contacter' }
+            //'Boutique': [
+                //{ href: '#training', text: 'Nos formations' },
+                //{ href: '#about', text: 'Qui sommes-nous' },
+                //{ href: '#contact', text: 'Nous contacter' }
+            //],
+            '':[
+                
             ]
         };
 

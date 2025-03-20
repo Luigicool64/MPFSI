@@ -4,7 +4,11 @@ import { module } from "../composant/qui_sommes_nous.js";
 export default class About {
     getContent(name) {
         this.name = 'A propos';
-        this.title = document.title = `MPFSI - ${this.name}`;   
+        this.content = document.getElementById(name);
+        this.title = document.title = `MPFSI - ${this.name}`;
+        if (screen.width <= 1080){
+            this.content.style.height = '2200px';
+        }
         const header = new Header();
         header.getContent(name, this.name);
         const composant = new module(name,'quiSommesNous','QUI SOMMES-NOUS',`Le MPFSI (Michael Portesse Formation Secourisme Incendie) est une organisation spécialisée dans la formation en secourisme et sécurité incendie. Elle propose des formations intra-entreprise adaptées aux besoins des organisations, couvrant des thèmes tels que l'utilisation des extincteurs, l'évacuation des lieux et les premiers secours. Par ailleurs, le MPFSI organise des événements de sensibilisation destinés aux particuliers, visant à promouvoir la culture de la sécurité. Engagée à fournir des formations de qualité, l'organisation contribue à la protection des employés et des biens.`);

@@ -7,6 +7,15 @@
     font-family: 'DMSerifText', sans-serif;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#content {
+    height:100%
+}
+
 button {
     width: 310px;
     height: 85px;
@@ -18,6 +27,12 @@ button {
     color: #FFFFFF;
     font-weight: bold;
     cursor: pointer;
+}
+
+.page {
+    display: flex;
+    flex-direction: column; /* Aligne les enfants en colonne */
+    min-height: 100vh; /* Assurez-vous que le conteneur prend toute la hauteur de la fenêtre */
 }
 
 .navbar {
@@ -361,7 +376,7 @@ button {
 
 #result-container{
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
@@ -377,6 +392,9 @@ button {
     align-items: center;
     flex-direction: column-reverse;
     margin: 70px;
+}
+.card a{
+    text-decoration: none;
 }
 
 .card img{
@@ -407,7 +425,41 @@ button {
     font-size:20px;
 }
 
+details{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+summary{
+    font-size:80px;
+}
+
+.pdetails{
+    font-size:50px
+}
+
+.labeldetails{
+    font-size: 75px;
+    color: #FF8730;
+}
+
 @media (max-width: 1080px) {
+
+    button {
+        width: 175px;
+        height: 55px;
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 25px;
+        background-color: #BC0000;
+        color: #FFFFFF;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
     .navbar-burger {
         background-color: #FF0000;
         height: 50px;
@@ -419,10 +471,6 @@ button {
 
     .nav {
         display: none;
-    }
-
-    .content {
-        padding: auto;
     }
 
     .logo {
@@ -461,6 +509,7 @@ button {
         justify-content: end;
         flex-direction: column;
         align-items: end;
+
     }
 
     #sidenavLink {
@@ -476,6 +525,7 @@ button {
         transition: 0.3s;
         cursor: pointer;
         margin-right: 10px;
+        margin-top:-5px;
     }
 
     .sidenav a:hover {
@@ -484,8 +534,9 @@ button {
 
     #closeBtn {
         position: absolute;
-        margin-right: 10px;
+        margin-right: -760px;
         cursor: pointer;
+        top:-30px
     }
 
     #closeBtn p {
@@ -493,7 +544,7 @@ button {
     }
 
     #openBtn {
-        position: absolute;
+        position: relative;
         margin-right: 10px;
         cursor: pointer;
     }
@@ -507,7 +558,7 @@ button {
     }
 
     #content {
-        transition: margin-bottom ease .5s;
+        transition: margin-bottom ease .5s;   
     }
 
     .footer {
@@ -517,7 +568,6 @@ button {
         height: 60px;
         border-radius: 20px;
         font-size: 20px;
-        margin-bottom: -20px;
     }
 
     .telephone {
@@ -602,7 +652,7 @@ button {
     }
     
     .header {
-        margin-bottom: -390px;
+        margin-bottom: -573px;
     }
     
     .quiSommesNous {
@@ -613,6 +663,7 @@ button {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 135px;
     }
     
     .quiSommesNous img {
@@ -640,6 +691,7 @@ button {
     
     .objectif img {
         border-radius: 25px;
+        margin-top: 300px ;
     }
     
     .objectif_info {
@@ -652,12 +704,27 @@ button {
     }
 
     .message {
-        margin-top: 100px;
+        margin-top: 120px;
     }
 
     
 
     @media (max-width: 600px) {
+        .quiSommesNous {
+            margin-top: 110px;
+        }
+
+        .quiSommesNous img{
+            width : 150px;
+            height : 150px;
+        }
+
+        #closeBtn {
+            margin-right: -370px;
+            padding: 0;
+        }
+
+
         .logo {
             position: relative;
             margin-right: 120px;
